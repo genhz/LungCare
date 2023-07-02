@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 from django.utils import timezone
 
-
+#模型
 class Patient(models.Model):
     pat_id=models.CharField(max_length=20,primary_key=True)
     pat_name=models.CharField(max_length=200)
