@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Login</title>
+    <link rel="stylesheet" href="/static/css/layui.css" media="all" />
+    <link rel="stylesheet" href="/static/css/login.css" media="all"/>
+    <link rel="stylesheet" href="/static/css/modules/laydate/default/laydate.css" media="all"/>
+    <link rel="stylesheet" href="/static/css/modules/layer/default/layer.css" media="all"/>
+    <link rel="stylesheet" href="/static/css/modules/code.css" media="all"/>
+</head>
+<body class="beg-login-bg">
+<div class="beg-login-box">
+    
+    <div class="beg-login-main">
+        <form action="" class="layui-form" lay-filter="example" method="post">
+            <div class="layui-form-item">
+                <label class="layui-form-label">密码:</label>
+                <div class="layui-input-block">
+                    <input type="password" name="password" lay-verify="password" autocomplete="off" placeholder="Input password" class="layui-input">
+                    <label class="beg-login-icon">
+                        <i class="layui-icon">&#xe673;</i>
+                    </label>
+                </div>
+               
+            </div>
+            <div class="layui-form-item">
+
+                <div class="beg-pull-right">
+                    <button class="layui-btn layui-btn-primary" lay-submit='' lay-filter="demo1" type="submit" >
+                        用户登录
+                    </button>
+
+                </div>
+				<div class="beg-pull-right">
+
+					
+                </div>
+    
+                <div class="beg-clear"></div>
+            </div>
+        </form>
+    </div>
+{% if messages %}
+<script>
+        {% for msg in messages %}
+            alert('{{ msg.message }}');
+        {% endfor %}
+    </script>
+{% endif %}
+</div>
+<script type="text/javascript" src="/static/js/layui.all.js"></script>
+{##}
+{#<script>#}
+{#var layer = layui.layer#}
+{#  ,form = layui.form,$=layui.jquery;#}
+{# //自定义验证规则#}
+{##}
+{# form.verify({#}
+{#    userName: function(value){#}
+{#      if(value.length == 0){#}
+{#        return 'User name cannot be empty';#}
+{#      }#}
+{#    }#}
+{#    ,password: [#}
+{#      /^[\S]{6,12}$/#}
+{#      ,'Password must be 6 to 12 digits and no spaces'#}
+{#    ]#}
+{##}
+{#  });#}
+{##}
+{#//监听提交#}
+{#  form.on('submit(demo1)', function(data){#}
+{#    layer.msg('Login successful',{time:2000});#}
+{#    $('button.layui-btn').text('Logging in')#}
+{#    window.location.href='{% url 'index' %}'#}
+{#    return false;#}
+{#  });#}
+{#  form.on('submit(demo2)', function(data){#}
+{#    layer.msg('Login successful',{time:2000});#}
+{#    $('button.layui-btn').text('Logging in')#}
+{#    window.location.href='{% url 'index1' %}'#}
+{#    return false;#}
+{#  });#}
+{#</script>#}
+</body>
+</html>
+

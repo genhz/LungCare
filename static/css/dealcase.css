@@ -1,0 +1,38 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+body {
+	background-color: aliceblue;
+}
+.main{
+	width: 980px;
+	position: relative;
+	background-color: white;
+	margin: 15px auto;
+}
+.inner{
+	width: 900px;
+	padding-top: 15px;
+	margin: 0 auto;
+	background-color: white;
+	position: relative;
+	/* height: 900px; */
+}
+.header{
+	margin: 0 auto;
+	width: 200px;
+}
+.text{
+	width: 800px;
+	margin: 0% auto;
+	position: relative;
+}
+.name{
+	width: 250px;
+	height: 40px;
+}
+textarea{
+	width: 400px;
+	height: 200px;
+}

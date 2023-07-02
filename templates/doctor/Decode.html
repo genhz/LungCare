@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>ThirdEye AI</title>
+  <link rel="stylesheet" href="/static/css/layui.css" media="all" />
+    <link rel="stylesheet" href="/static/css/login.css" media="all"/>
+    <link rel="stylesheet" href="/static/css/modules/laydate/default/laydate.css" media="all"/>
+    <link rel="stylesheet" href="/static/css/modules/layer/default/layer.css" media="all"/>
+    <link rel="stylesheet" href="/static/css/modules/code.css" media="all"/>
+  <style type="text/css">
+  .layui-layout-body{overflow-y: scroll;}
+  .layui-layout-admin .layui-body{
+    position: initial;width:1300px;left:0; right:0;margin:40px auto;
+  }
+  .layui-form-item{text-align: center;}
+  .layui-input{width: auto;}
+  </style>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  {% include 'doctor/header.html' %}
+  <div class="layui-body">
+    <!-- 内容主体区域 -->
+      {% for img in imgs %}
+    <div class="layui-row " style='padding:15px; background:#f0f0f0' >
+      <div class="layui-col-xs12">
+        <fieldset class="layui-elem-field">
+          <legend>原始图像：</legend>
+          <div class="layui-field-box">
+            <img src='{{ img.img }}' width="600px" />
+          </div>
+        </fieldset>
+      </div>
+      <div class="layui-col-xs12">
+        <fieldset class="layui-elem-field">
+          <legend>带有感染部位标注的图像：</legend>
+          <div class="layui-field-box">
+            <img src='{{ img.after_img }}' width="600px" />
+          </div>
+        </fieldset>
+      </div>
+      <div class="layui-col-xs12">
+          {% for pat in pats %}
+          <fieldset class="layui-elem-field">
+          <legend>用户信息</legend>
+          <div class="layui-field-box">
+            <div class="layui-form" >
+              <div class="layui-form-item">
+                <label class="layui-form-label">用户名</label>
+                <div class="layui-input-block">
+                  <input type="text" value='{{ pat.pat_name }}'   disabled class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">性别</label>
+                <div class="layui-input-block">
+                  <input type="text" value='{{ pat.pat_sex }}' disabled class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">年龄</label>
+                <div class="layui-input-block">
+                  <input type="text" value='{{ pat.pat_age }}' disabled class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">手机</label>
+                <div class="layui-input-block">
+                  <input type="text" value='{{ pat.pat_phone }}' disabled class="layui-input">
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+          {% endfor %}
+
+
+        </div>
+        <div class="layui-col-xs12">
+        <fieldset class="layui-elem-field">
+          <legend>诊断结果</legend>
+            <div class="layui-form-item">
+                <label class="layui-form-label">杯盘比</label>
+                <div class="layui-input-block">
+                  <input type="text" value='{{ img.oc }}' disabled class="layui-input">
+                </div>
+              </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">青光眼</label>
+                <div class="layui-input-block">
+                  <input type="text" value='{{ img.oc_rate }}' disabled class="layui-input">
+                </div>
+              </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">视网膜病变</label>
+                <div class="layui-input-block">
+                  <input type="text" value='{{ img.dr_rate }}' disabled class="layui-input">
+                </div>
+              </div>
+          <div class="layui-field-box">
+            <form action="" method="post" class="layui-form" lay-filter="example">
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">诊断阐述：</label>
+                <div class="layui-input-block">
+                    <input type="hidden" name="id" value="{{ img.id }}">
+                  <textarea  class="layui-textarea" name="about" lay-verify="about" autocomplete="off" placeholder="请输入诊断解读" >{{ img.advice }}</textarea>
+                </div>
+              </div>
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">诊断意见：</label>
+                <div class="layui-input-block">
+                  <textarea  class="layui-textarea" name="advice" lay-verify="advice" autocomplete="off" placeholder="请输入诊断建议"  >{{ img.propose }}</textarea>
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <input type="submit" class="layui-btn" value="提交诊断报告" lay-submit="" lay-filter="form1">
+              </div>
+            </form>
+          </div>
+        </fieldset>
+      </div>
+      </div>
+      {% endfor %}
+
+
+    </div>
+    
+  </div>
+  
+  
+</div>
+<script type="text/javascript" src="/static/js/layui.all.js"></script>
+{#<script type="text/javascript">#}
+{#var layer = layui.layer#}
+{#  ,form = layui.form,$=layui.jquery;#}
+{#  //监听提交#}
+{#  form.on('submit(form1)', function(data){#}
+{#    layer.msg('Submitted successfully',{time:2000});#}
+{#    $('button.layui-btn').text('Submitting...')#}
+{#    window.location.href='{% url 'index1' %}'#}
+{#    return false;#}
+{#  });#}
+{#</script>#}
+</body>
+</html>

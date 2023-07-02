@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Register</title>
+    <link rel="stylesheet" href="/static/css/layui.css" media="all" />
+    <link rel="stylesheet" href="/static/css/login.css" media="all"/>
+    <link rel="stylesheet" href="/static/css/modules/laydate/default/laydate.css" media="all"/>
+    <link rel="stylesheet" href="/static/css/modules/layer/default/layer.css" media="all"/>
+    <link rel="stylesheet" href="/static/css/modules/code.css" media="all"/>
+</head>
+<body class="beg-login-bg">
+<div class="beg-login-box">
+    
+    <div class="beg-login-main1">
+        <form action="" class="layui-form" lay-filter="example" method="post">
+            <div class="layui-form-item">
+                <label class="layui-form-label">User name:</label>
+                <div class="layui-input-block">
+                    <input type="text" name="userName" lay-verify="userName" autocomplete="off" placeholder="Enter login name" class="layui-input username">
+                   
+                </div>
+                
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">Password:</label>
+                <div class="layui-input-block">
+                    <input type="password" name="password" lay-verify="password" autocomplete="off" placeholder="Input password" class="layui-input">
+ 
+                </div>
+               
+            </div>
+			     <div class="layui-form-item">
+                <label class="layui-form-label">Gender:</label>
+                <div class="layui-input-block">
+                  <input type="radio" name="sex" value="male" title="male" checked="">
+					<input type="radio" name="sex" value="female" title="female">
+                </div>
+               
+            </div>
+			     <div class="layui-form-item">
+                <label class="layui-form-label">Age:</label>
+                <div class="layui-input-block">
+                    <input type="text" name="age" lay-verify="required" autocomplete="off" placeholder="age" class="layui-input">
+                   
+                </div>
+               
+            </div>
+			  <div class="layui-form-item">
+                <label class="layui-form-label">Telephone:</label>
+                <div class="layui-input-block">
+                    <input type="text" name="phone" maxlength="11" lay-verify="required|phone" autocomplete="off" placeholder="Telephone" class="layui-input">
+                    
+                </div>
+               
+            </div>
+            <div class="layui-form-item">
+               
+                <div class="beg-pull-right">
+                    <button class="layui-btn layui-btn-primary" lay-submit='' lay-filter="demo1" >
+                         Register
+                    </button>
+                </div>
+                <div class="beg-clear"></div>
+            </div>
+        </form>
+    </div>
+   
+</div>
+<script type="text/javascript" src="/static/js/layui.all.js"></script>
+{##}
+{#<script>#}
+{#var layer = layui.layer#}
+{#  ,form = layui.form,$=layui.jquery;#}
+{# //自定义验证规则#}
+{# #}
+{#  form.verify({#}
+{#    userName: function(value){#}
+{#      if(value.length == 0){#}
+{#        return 'User name cannot be empty';#}
+{#      }#}
+{#    }#}
+{#    ,password: [#}
+{#      /^[\S]{6,12}$/#}
+{#      ,'Password must be 6 to 12 digits and no spaces'#}
+{#    ]#}
+{#   #}
+{#  });   #}
+{#//监听提交#}
+{#  form.on('submit(demo1)', function(data){#}
+{#    layer.msg('Login successful',{time:2000});#}
+{#    $('button.layui-btn').text('Logging in...')#}
+{#    window.location.href='{% url 'login' %}'#}
+{#    return false;#}
+{#  })#}
+{# #}
+{#</script>#}
+</body>
+</html>

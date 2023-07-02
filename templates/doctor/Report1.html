@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>ThirdEye AI</title>
+  <link rel="stylesheet" href="/static/css/layui.css" media="all" />
+    <link rel="stylesheet" href="/static/css/login.css" media="all"/>
+    <link rel="stylesheet" href="/static/css/modules/laydate/default/laydate.css" media="all"/>
+    <link rel="stylesheet" href="/static/css/modules/layer/default/layer.css" media="all"/>
+    <link rel="stylesheet" href="/static/css/modules/code.css" media="all"/>
+  <style type="text/css">
+  .layui-layout-body{overflow-y: scroll;}
+  .layui-layout-admin .layui-body{
+    position: initial;width:1300px;left:0; right:0;margin:40px auto;overflow-y:hidden;
+  }
+  </style>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  {% include 'doctor/header.html' %}
+  <div class="layui-body">
+    <!-- 内容主体区域 -->
+    <div class="layui-row " style='padding:15px; background:#f0f0f0' >
+      <div class="layui-col-xs6">
+        <fieldset class="layui-elem-field">
+          <legend>原始图像</legend>
+          <div class="layui-field-box">
+            <img src='/static/images/1.png' height='200px' />
+          </div>
+        </fieldset>
+        <fieldset class="layui-elem-field">
+          <legend>带有标注区域的图像</legend>
+          <div class="layui-field-box">
+            <img src='/static/images/2.png' height='200px' />
+          </div>
+        </fieldset>
+      </div>
+      <div class="layui-col-xs6">
+        <fieldset class="layui-elem-field">
+          <legend>患者信息</legend>
+          <div class="layui-field-box">
+            <div class="layui-form" >
+              <div class="layui-form-item">
+                <label class="layui-form-label">患者名字</label>
+                <div class="layui-input-block">
+                  <input type="text" value='李响' disabled class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">性别</label>
+                <div class="layui-input-block">
+                  <input type="text" value='male' disabled class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">年龄</label>
+                <div class="layui-input-block">
+                  <input type="text" value='20' disabled class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">手机</label>
+                <div class="layui-input-block">
+                  <input type="text" value='18845312866' disabled class="layui-input">
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <fieldset class="layui-elem-field">
+          <legend>诊断结果</legend>
+          <div class="layui-field-box">
+            <div class="layui-form-item layui-form-text">
+              <label class="layui-form-label">诊断阐述</label>
+              <div class="layui-input-block">
+                <textarea  class="layui-textarea" disabled >感谢您的配合，您的新冠肺部CT图像诊断结果为正常，请放心！</textarea>
+              </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+              <label class="layui-form-label">诊断建议</label>
+              <div class="layui-input-block">
+                <textarea  class="layui-textarea" disabled >出门请记得戴口罩，勤洗手，少往人多的地方聚集，做好防护措施！</textarea>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>   
+  </div> 
+</div>
+<script type="text/javascript" src="/static/js/layui.all.js"></script>
+
+</body>
+</html>

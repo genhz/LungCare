@@ -1,0 +1,47 @@
+body {
+	background-color: aliceblue;
+}
+
+.box {
+	margin: 20px auto;
+	width: 980px;
+	height: 300px;
+	background-color: white;
+	/* position: relative; */
+}
+
+.box dt {
+	float: left;
+	width: 400px;
+	margin-top: 20px;
+	text-align: center;
+}
+
+.box dd {
+	float: left;
+	width: 500px;
+}
+
+.doc_name,
+.rating,
+.propose {
+	/* position: a; */
+	height: 15px;
+	margin-top: 20px;
+}
+
+button a:link,
+button a:visited {
+	color: #000;
+}
+
+.doclist {
+	position: relative;
+	width: 50px;
+	left: 500px;
+}
+img{
+
+	height: 224px;
+	width: auto;
+}

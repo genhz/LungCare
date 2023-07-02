@@ -1,0 +1,16 @@
+<div class="layui-header">
+    <div class="layui-logo"></div>
+    <!-- 头部区域（可配合layui已有的水平导航） -->
+    <ul class="layui-nav layui-layout-left">
+      <li class="layui-nav-item"><a href="{% url 'index' %}">我的诊断历史</a></li>
+      <li class="layui-nav-item"><a href="{% url 'create' %}">上传眼底图像诊断</a></li>
+    </ul>
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item">
+        <a href="javascript:;">
+          袁中政
+        </a>
+      </li>
+      <li class="layui-nav-item"><a href="{% url 'login' %}">Sign out</a></li>
+    </ul>
+  </div>

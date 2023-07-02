@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>ThirdEye AI</title>
+  <link rel="stylesheet" href="/static/css/layui.css" media="all" />
+    <link rel="stylesheet" href="/static/css/login.css" media="all"/>
+    <link rel="stylesheet" href="/static/css/modules/laydate/default/laydate.css" media="all"/>
+    <link rel="stylesheet" href="/static/css/modules/layer/default/layer.css" media="all"/>
+    <link rel="stylesheet" href="/static/css/modules/code.css" media="all"/>
+  <style type="text/css">
+  .layui-layout-body{overflow-y: scroll;}
+  .layui-layout-admin .layui-body{
+    position: initial;width:1300px;left:0; right:0;margin:40px auto;overflow-y:hidden;
+  }
+  </style>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  {% include 'user/header.html' %}
+  <div class="layui-body">
+    <!-- 内容主体区域 -->
+    <div class="layui-row " style='padding:15px; background:#f0f0f0' >
+      <div class="layui-col-xs6">
+        <fieldset class="layui-elem-field">
+          <legend>原始图片</legend>
+          <div class="layui-field-box">
+            <img src='/static/src/00cc2b75cddd.png' height='200px' />
+          </div>
+        </fieldset>
+        <fieldset class="layui-elem-field">
+          <legend> 视杯视盘联合分割后的结果</legend>
+          <div class="layui-field-box">
+            <img src='/static/src/00cc2b75cddd_division.png' height='200px' />
+          </div>
+        </fieldset>
+      </div>
+      <div class="layui-col-xs6">
+        <fieldset class="layui-elem-field">
+          <legend>用户信息</legend>
+          <div class="layui-field-box">
+            <div class="layui-form" >
+              <div class="layui-form-item">
+                <label class="layui-form-label">患者姓名</label>
+                <div class="layui-input-block">
+                  <input type="text" value='袁中政'  class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">性别</label>
+                <div class="layui-input-block">
+                  <input type="text" value='男'  class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">年龄</label>
+                <div class="layui-input-block">
+                  <input type="text" value='21'  class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">手机号</label>
+                <div class="layui-input-block">
+                  <input type="text" value='13173117610'  class="layui-input">
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <fieldset class="layui-elem-field">
+          <legend>诊断结果</legend>
+          <div class="layui-field-box">
+              <div class="layui-form-item">
+                <label class="layui-form-label">杯盘比</label>
+                <div class="layui-input-block">
+                  <input type="text" value='0.47662935020496955'  class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">视网膜病变</label>
+                <div class="layui-input-block">
+                  <input type="text" value='无糖尿病视网膜病变'  class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">青光眼</label>
+                <div class="layui-input-block">
+                  <input type="text" value='无'  class="layui-input">
+                </div>
+              </div>
+            <div class="layui-form-item layui-form-text">
+              <label class="layui-form-label">诊断阐述：</label>
+              <div class="layui-input-block">
+                <textarea  class="layui-textarea"  >有糖尿病的病人眼底虽然没有视网膜的异常;尚处于正常范围内，但杯盘比偏大，请平时注意呵护眼睛，健康用眼。</textarea>
+              </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+              <label class="layui-form-label">诊断建议：</label>
+              <div class="layui-input-block">
+                <textarea  class="layui-textarea"  >建议一年内至眼科检查</textarea>
+              </div>
+            </div>
+
+
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+<script type="text/javascript" src="/static/js/layui.all.js"></script>
+
+</body>
+</html>

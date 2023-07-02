@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>ThirdEye AI</title>
+  <link rel="stylesheet" href="/static/css/layui.css" media="all" />
+    <link rel="stylesheet" href="/static/css/login.css" media="all"/>
+    <link rel="stylesheet" href="/static/css/modules/laydate/default/laydate.css" media="all"/>
+    <link rel="stylesheet" href="/static/css/modules/layer/default/layer.css" media="all"/>
+    <link rel="stylesheet" href="/static/css/modules/code.css" media="all"/>
+  <style type="text/css">
+  .layui-layout-body{overflow-y: scroll;}
+
+  .layui-layout-admin .layui-body{
+   position: initial;width:1300px;left:0; right:0;margin:40px auto;}
+  </style>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  {% include 'user/header.html' %}
+
+<div class='layui-box'>
+  <div class="layui-body">
+    <!-- 内容主体区域 -->
+    <div class="layui-row " style='padding:15px;border-radius:10px; background:#f0f0f0' >
+      <div class="layui-col-xs12">
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+          <legend>请选择一张眼底图像：</legend>
+        </fieldset>
+        <form id="add_competition_goods_from" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+        <div class="layui-upload">
+          <input type="file" name="img" id="img_file">
+          <div class="layui-upload-list">
+            <img src="{{before_path}}" class="layui-upload-img" height='200px' id="picbox">
+            <p id="demoText"></p>
+          </div>
+          <input type="submit" class="layui-btn" id="submit1" value="开始诊断"></input>
+        </div>
+        </form>
+      </div>
+    </div>
+      <div class="layui-row " style='padding:15px;border-radius:10px; background:#f0f0f0' >
+      <div class="layui-col-xs12">
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+          <legend>诊断信息</legend>
+        </fieldset>
+          <div class="layui-form-item">
+                <label class="layui-form-label">杯盘比</label>
+                <div class="layui-input-block">
+                  <input type="text" value='{{ ratio }}' disabled class="layui-input">
+                </div>
+              </div>
+          <div class="layui-form-item">
+                <label class="layui-form-label">视网膜病变</label>
+                <div class="layui-input-block">
+                  <input type="text" value='{{ dr_identify }}' disabled class="layui-input">
+                </div>
+              </div>
+          <div class="layui-form-item">
+                <label class="layui-form-label">有无青光眼</label>
+                <div class="layui-input-block">
+                  <input type="text" value='{{ oc_identify }}' disabled class="layui-input">
+                </div>
+              </div>
+          <div class="layui-form-item layui-form-text">
+              <label class="layui-form-label">诊断建议：</label>
+              <div class="layui-input-block">
+                <textarea  class="layui-textarea" disabled >{{ advice }}</textarea>
+              </div>
+            </div>
+          <div class="layui-form-item layui-form-text">
+              <label class="layui-form-label">诊断阐述：</label>
+              <div class="layui-input-block">
+                <textarea  class="layui-textarea" disabled >{{ des }}</textarea>
+              </div>
+            </div>
+
+      </div>
+    </div>
+    <div class="layui-row " style='padding:15px;border-radius:10px; margin-top:10px; background:#f0f0f0' >
+{#      <button id="zhenduan">开始诊断</button>#}
+      <div class="layui-col-xs12">
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+          <legend>视杯视盘联合分割后的结果</legend>
+        </fieldset>
+        <div id="demo">
+            <p id="pre_dic"></p>
+            <img src="{{after_path}}" height='200px' id="checkbox">
+        </div>
+      </div>
+    </div>
+      <div class="layui-row " style='padding:15px;border-radius:10px; margin-top:10px; background:#f0f0f0' >
+{#      <button id="zhenduan">开始诊断</button>#}
+      <div class="layui-col-xs12">
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+          <legend>糖尿病视网膜病变各类别相似度：</legend>
+        </fieldset>
+        <div id="demo">
+            <div id="container"></div>
+						<div hidden="hidden">
+						                <table id="datatable">
+						            <thead>
+						                <tr>
+						                    <th></th>
+						                    <th>各类别相似度</th>
+						                </tr>
+						            </thead>
+						            <tbody>
+						                <tr>
+						                    <th>0</th>
+						                    <td>{{ a0 }}</td>
+						                </tr>
+						                <tr>
+						                    <th>1</th>
+						                    <td>{{ a1 }}</td>
+						                </tr>
+						                <tr>
+						                    <th>2</th>
+						                    <td>{{ a2 }}</td>
+						                </tr>
+						                <tr>
+						                    <th>3</th>
+						                    <td>{{ a3 }}</td>
+						                </tr>
+						                <tr>
+						                    <th>4</th>
+						                    <td>{{ a4 }}</td>
+						                </tr>
+						            </tbody>
+						        </table>
+						            </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div>
+<script type="text/javascript" src="/static/js/layui.all.js"></script>
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery-3.1.1.js"></script>
+
+<script src="http://code.hcharts.cn/highcharts/10.0.0/highcharts.js"></script>
+
+			<script src="http://code.hcharts.cn/highstock/10.0.0/highstock.js"></script>
+
+			<script src="http://code.hcharts.cn/highmaps/10.0.0/highmaps.js"></script>
+			<script src="http://cdn.hcharts.cn/highcharts/modules/data.js"></script>
+			<script src="http://code.hcharts.cn/gantt/10.0.0/highcharts-gantt.js"></script>
+			<script src="/static/js/excel.js" type="text/javascript"></script>
+			<script src="/static/js/main.js" type="text/javascript"></script>
+
+{#<script>#}
+{#     var jugement_img = 0;//判断用户点击开始诊断之前是否成功上传了图片#}
+{#     var check_but = document.getElementById('zhenduan');#}
+{#     var img_ = document.getElementById('checkbox');#}
+{#     var pre_dics = document.getElementById('pre_dic');#}
+{#     let UPLOAD_FILES;#}
+{#     let upload = layui.upload.render({#}
+{#     elem: '#img_file'#}
+{#    ,url: 'check/' //改成您自己的上传接口#}
+{#    ,auto: false#}
+{#    ,multiple: true#}
+{#    ,number:1#}
+{#    ,accept:'file'#}
+{#     ,exts:'tif|jpg|png'#}
+{#     ,headers: {access_token: localStorage.access_token}#}
+{#    ,choose: function(obj){#}
+{#            UPLOAD_FILES = obj.pushFile();#}
+{#            clearFile();    //将所有文件先删除再说#}
+{#            obj.preview(function (index, file, result) {#}
+{#                $('#picbox').attr('src', result); //图片链接（base64）#}
+{#                obj.pushFile();#}
+{#            });#}
+{#        },bindAction: '#submit1'#}
+{#    ,done: function(res){#}
+{#      layer.msg("分析成功");#}
+{#      img_.src = "data:image/jpeg;base64,"+ res['data'];#}
+{#      pre_dics.innerHTML = res['pre_res'];#}
+{#          clearFile();#}
+{#      jugement_img = 1;//用户已成功上传了图片#}
+{#    },error:function () {#}
+{#          clearFile();#}
+{#          layer.msg("上传失败");#}
+{#      }#}
+{#  });#}
+{##}
+{#//清空文件队列#}
+{#function clearFile(){#}
+{#    for (let x in UPLOAD_FILES) {#}
+{#        delete UPLOAD_FILES[x];#}
+{#    }#}
+{#}#}
+{##}
+  {#check_but.onclick = function () {#}
+  {#    // 使用jQuery发送请求的关键代码，同时使用了vue.js#}
+  {#    // 用户成功上传图片，则可以诊断#}
+  {#    if (jugement_img){#}
+  {#    $.ajax({#}
+  {#        url: "get_img/",#}
+  {#        type: "POST",#}
+  {#        data: '',#}
+  {#        processData: false,#}
+  {#        success: function (message) {#}
+  {#            data = JSON.stringify(message);#}
+  {#            data = data.substr(1,data.length-2);#}
+  {#            img_.src = "data:image/jpeg;base64,"+ data;#}
+  {#        },#}
+  {#        error: function () {#}
+  {#            layer.msg("注册失败请重新尝试！");#}
+  {#        }#}
+  {#    })#}
+  {#    }else{#}
+  {#        layer.msg("请先上传照片");#}
+  {#    }}#}
+{##}
+{#</script>#}
+</body>
+</html>
