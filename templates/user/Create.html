@@ -26,7 +26,7 @@
     <div class="layui-row " style='padding:15px;border-radius:10px; background:#f0f0f0' >
       <div class="layui-col-xs12">
         <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-          <legend>请选择一张眼底图像：</legend>
+          <legend>请选择一套肺部CT图像：</legend>
         </fieldset>
         <form id="add_competition_goods_from" action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
@@ -47,33 +47,31 @@
           <legend>诊断信息</legend>
         </fieldset>
           <div class="layui-form-item">
-                <label class="layui-form-label">杯盘比</label>
+                <label class="layui-form-label">有无结节</label>
                 <div class="layui-input-block">
-                  <input type="text" value='{{ ratio }}' disabled class="layui-input">
+{#                  <input type="text" value='{{ dr_identify }}' disabled class="layui-input">#}
+                    <input type="text" value='有肺结节' disabled class="layui-input">
                 </div>
               </div>
           <div class="layui-form-item">
-                <label class="layui-form-label">视网膜病变</label>
+                <label class="layui-form-label">结节类型</label>
                 <div class="layui-input-block">
-                  <input type="text" value='{{ dr_identify }}' disabled class="layui-input">
-                </div>
-              </div>
-          <div class="layui-form-item">
-                <label class="layui-form-label">有无青光眼</label>
-                <div class="layui-input-block">
-                  <input type="text" value='{{ oc_identify }}' disabled class="layui-input">
+                  <input type="text" value='孤立性结节' disabled class="layui-input">
+{#                    <input type="text" value='{{ oc_identify }}' disabled class="layui-input">#}
                 </div>
               </div>
           <div class="layui-form-item layui-form-text">
               <label class="layui-form-label">诊断建议：</label>
               <div class="layui-input-block">
-                <textarea  class="layui-textarea" disabled >{{ advice }}</textarea>
+{#                <textarea  class="layui-textarea" disabled >{{ advice }}</textarea>#}
+                  <textarea  class="layui-textarea" disabled >去医院进行定期复查，发现肺结节不要过于焦虑，大部分是良性结节，及时规范的中药调理，可以缩小甚至消失，必要时可选择手术治疗。日常生活当中最好少抽烟，少去污染严重的场所，远离粉尘，保持良好的饮食和生活习惯，适当的运动运动，保持好心情，对肺部健康都会更加有利。</textarea>
               </div>
             </div>
           <div class="layui-form-item layui-form-text">
               <label class="layui-form-label">诊断阐述：</label>
               <div class="layui-input-block">
-                <textarea  class="layui-textarea" disabled >{{ des }}</textarea>
+{#                <textarea  class="layui-textarea" disabled >{{ des }}</textarea>#}
+                  <textarea  class="layui-textarea" disabled >肺结节是指肺部实质内类圆形、境界清楚、直径小于等于3cm的软组织病灶，肺部实性结节主要是在影像学上密度增高的实性或者亚实性密度影，在肺组织中显示为均匀致密的肺结节。</textarea>
               </div>
             </div>
 
