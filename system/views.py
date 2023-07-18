@@ -196,7 +196,7 @@ def create(request):
     # request.session['lei'] = 'oc'
     context['path'] = './static/src/eyeai_resize.jpg'
     context['before_path'] = './static/src/肺结节.jpg'
-    context['after_path'] = './static/src/V0001.bmp'
+    context['after_path'] = './static/src/金标准.jpg'
     print(context['before_path'])
     try:
         if request.method == 'POST':

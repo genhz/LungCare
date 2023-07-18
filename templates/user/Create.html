@@ -4,7 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>ThirdEye AI</title>
-  <link rel="stylesheet" href="/static/css/layui.css" media="all" />
+    <!-- 引入 layui.css -->
+    <link rel="stylesheet" href="//unpkg.com/layui@2.6.8/dist/css/layui.css" media="all">
+
+    <!-- 引入 layui.js -->
+
+  {#<link rel="stylesheet" href="/static/css/layui.css" media="all" />#}
     <link rel="stylesheet" href="/static/css/login.css" media="all"/>
     <link rel="stylesheet" href="/static/css/modules/laydate/default/laydate.css" media="all"/>
     <link rel="stylesheet" href="/static/css/modules/layer/default/layer.css" media="all"/>
@@ -15,6 +20,7 @@
   .layui-layout-admin .layui-body{
    position: initial;width:1300px;left:0; right:0;margin:40px auto;}
   </style>
+
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
@@ -24,21 +30,45 @@
   <div class="layui-body">
     <!-- 内容主体区域 -->
     <div class="layui-row " style='padding:15px;border-radius:10px; background:#f0f0f0' >
-      <div class="layui-col-xs12">
-        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-          <legend>请选择一套肺部CT图像：</legend>
+      <div class="layui-col-xs6">
+          <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+          <legend>请选择一张肺部CT图像：</legend>
         </fieldset>
-        <form id="add_competition_goods_from" action="" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-        <div class="layui-upload">
-          <input type="file" name="img" id="img_file">
-          <div class="layui-upload-list">
+      </div>
+        <div class="layui-col-xs6">
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+          <legend>肺结节分割后的结果</legend>
+        </fieldset>
+        </div>
+        <div class="layui-col-xs12">
+            <div class="layui-col-xs3">
+                <div id="ID-slider-demo-setTips-result" style="height: 30px"></div>
+                <div id="ID-slider-demo-value" style="height: 20px"></div>
+            </div>
+            <div class="layui-col-xs12">
+            <form id="add_competition_goods_from" action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+            <div class="layui-upload">
+{#              <input type="file" class="layui-btn layui-btn-primary layui-border-green" name="img" id="img_file">#}
+                <button type="button" class="layui-btn layui-btn-primary layui-border-green" id="test1">
+                  <i class="layui-icon">&#xe67c;</i>上传图片
+                </button>
+              <input type="submit" class="layui-btn" id="submit1" value="开始诊断"></input>
+            </div>
+            </form>
+            </div>
+        </div>
+          <div class="layui-col-xs6">
+              <div class="layui-upload-list">
             <img src="{{before_path}}" class="layui-upload-img" height='200px' id="picbox">
             <p id="demoText"></p>
           </div>
-          <input type="submit" class="layui-btn" id="submit1" value="开始诊断"></input>
+          </div>
+        <div class="layui-col-xs6">
+        <div id="demo">
+            <p id="pre_dic"></p>
+            <img src="{{after_path}}" height='200px' id="checkbox">
         </div>
-        </form>
       </div>
     </div>
       <div class="layui-row " style='padding:15px;border-radius:10px; background:#f0f0f0' >
@@ -46,49 +76,49 @@
         <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
           <legend>诊断信息</legend>
         </fieldset>
-          <div class="layui-form-item">
+          <div class="layui-col-xs6">
+              <div class="layui-form-item">
                 <label class="layui-form-label">有无结节</label>
                 <div class="layui-input-block">
 {#                  <input type="text" value='{{ dr_identify }}' disabled class="layui-input">#}
                     <input type="text" value='有肺结节' disabled class="layui-input">
                 </div>
               </div>
-          <div class="layui-form-item">
-                <label class="layui-form-label">结节类型</label>
+              </div>
+          <div class="layui-col-xs6">
+              <div class="layui-form-item">
+                <label class="layui-form-label">结节大小</label>
                 <div class="layui-input-block">
-                  <input type="text" value='孤立性结节' disabled class="layui-input">
+{#                  <input type="text" value='{{ dr_identify }}' disabled class="layui-input">#}
+                    <input type="text" value='7.2524345mm' disabled class="layui-input">
+                </div>
+              </div>
+          </div>
+          <div class="layui-form-item">
+                <label class="layui-form-label">风险提示</label>
+                <div class="layui-input-block">
+                  <input type="text" value='中风险' disabled class="layui-input">
 {#                    <input type="text" value='{{ oc_identify }}' disabled class="layui-input">#}
                 </div>
               </div>
           <div class="layui-form-item layui-form-text">
-              <label class="layui-form-label">诊断建议：</label>
+              <label class="layui-form-label">诊断建议</label>
               <div class="layui-input-block">
 {#                <textarea  class="layui-textarea" disabled >{{ advice }}</textarea>#}
                   <textarea  class="layui-textarea" disabled >去医院进行定期复查，发现肺结节不要过于焦虑，大部分是良性结节，及时规范的中药调理，可以缩小甚至消失，必要时可选择手术治疗。日常生活当中最好少抽烟，少去污染严重的场所，远离粉尘，保持良好的饮食和生活习惯，适当的运动运动，保持好心情，对肺部健康都会更加有利。</textarea>
               </div>
             </div>
-          <div class="layui-form-item layui-form-text">
-              <label class="layui-form-label">诊断阐述：</label>
-              <div class="layui-input-block">
+{#          <div class="layui-form-item layui-form-text">#}
+{#              <label class="layui-form-label">诊断阐述：</label>#}
+{#              <div class="layui-input-block">#}
 {#                <textarea  class="layui-textarea" disabled >{{ des }}</textarea>#}
-                  <textarea  class="layui-textarea" disabled >肺结节是指肺部实质内类圆形、境界清楚、直径小于等于3cm的软组织病灶，肺部实性结节主要是在影像学上密度增高的实性或者亚实性密度影，在肺组织中显示为均匀致密的肺结节。</textarea>
-              </div>
-            </div>
+{#                  <textarea  class="layui-textarea" disabled >肺结节是指肺部实质内类圆形、境界清楚、直径小于等于3cm的软组织病灶，肺部孤立性结节主要是在影像学上密度增高的实性或者亚实性密度影，在肺组织中显示为均匀致密的肺结节。</textarea>#}
+{#              </div>#}
+{#            </div>#}
 
       </div>
     </div>
-    <div class="layui-row " style='padding:15px;border-radius:10px; margin-top:10px; background:#f0f0f0' >
-{#      <button id="zhenduan">开始诊断</button>#}
-      <div class="layui-col-xs12">
-        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-          <legend>视杯视盘联合分割后的结果</legend>
-        </fieldset>
-        <div id="demo">
-            <p id="pre_dic"></p>
-            <img src="{{after_path}}" height='200px' id="checkbox">
-        </div>
-      </div>
-    </div>
+
       <div class="layui-row " style='padding:15px;border-radius:10px; margin-top:10px; background:#f0f0f0' >
 {#      <button id="zhenduan">开始诊断</button>#}
       <div class="layui-col-xs12">
@@ -137,20 +167,34 @@
 </div>
 
 </div>
-<script type="text/javascript" src="/static/js/layui.all.js"></script>
+
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/jquery-3.1.1.js"></script>
-
 <script src="http://code.hcharts.cn/highcharts/10.0.0/highcharts.js"></script>
-
-			<script src="http://code.hcharts.cn/highstock/10.0.0/highstock.js"></script>
-
-			<script src="http://code.hcharts.cn/highmaps/10.0.0/highmaps.js"></script>
-			<script src="http://cdn.hcharts.cn/highcharts/modules/data.js"></script>
-			<script src="http://code.hcharts.cn/gantt/10.0.0/highcharts-gantt.js"></script>
-			<script src="/static/js/excel.js" type="text/javascript"></script>
-			<script src="/static/js/main.js" type="text/javascript"></script>
-
+<script src="http://code.hcharts.cn/highstock/10.0.0/highstock.js"></script>
+<script src="http://code.hcharts.cn/highmaps/10.0.0/highmaps.js"></script>
+<script src="http://cdn.hcharts.cn/highcharts/modules/data.js"></script>
+<script src="http://code.hcharts.cn/gantt/10.0.0/highcharts-gantt.js"></script>
+<script src="/static/js/excel.js" type="text/javascript"></script>
+<script src="/static/js/main.js" type="text/javascript"></script>
+<script src="//unpkg.com/layui@2.6.8/dist/layui.js"></script>
+<script>
+    layui.use(function(){
+      var slider = layui.slider;
+      var $ = layui.$;
+      // 渲染
+      slider.render({
+        elem: '#ID-slider-demo-value',
+        tips: false, // 关闭默认提示层
+        change: function(value){
+          $('#ID-slider-demo-setTips-result').html('当前CT：'+value+'/365');
+        },
+        min: 0, // 最小值
+        max: 356, // 最大值
+        value: 12 //初始值
+      });
+    });
+</script>
 {#<script>#}
 {#     var jugement_img = 0;//判断用户点击开始诊断之前是否成功上传了图片#}
 {#     var check_but = document.getElementById('zhenduan');#}
@@ -191,7 +235,7 @@
 {#    for (let x in UPLOAD_FILES) {#}
 {#        delete UPLOAD_FILES[x];#}
 {#    }#}
-{#}#}
+
 {##}
   {#check_but.onclick = function () {#}
   {#    // 使用jQuery发送请求的关键代码，同时使用了vue.js#}
